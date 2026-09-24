@@ -7,7 +7,7 @@
 
 An autonomous idea engine for crypto. Claude Opus 5.5 reasons about the market, argues against its own ideas, and proposes a trade. A walk-forward backtest on real Binance data judges it. A hard statistical gate decides whether it gets paper-traded. Everything that fails becomes a lesson, tagged with the market regime it died in.
 
-[**Live demo →**](https://REPO_OWNER.github.io/REPO_NAME/) · [Run it](#run-it) · [How it works](#how-it-works) · [Honest results](#honest-results) · [Concept video](docs/media/opus-lumen-concept.mp4)
+[**Live demo →**](https://shelpid.github.io/OPUS-LUMEN/) · [Run it](#run-it) · [How it works](#how-it-works) · [Honest results](#honest-results) · [Concept video](docs/media/opus-lumen-concept.mp4)
 
 ![OPUS LUMEN at the moment an idea survives: 90% conviction, gate passed, paper trade opened](docs/images/dashboard.png)
 
@@ -53,8 +53,8 @@ The model never sees the backtest before it commits to a hypothesis, never place
 **Local reasoner, zero setup.** Any static server works:
 
 ```bash
-git clone https://github.com/REPO_OWNER/REPO_NAME.git
-cd REPO_NAME
+git clone https://github.com/Shelpid/OPUS-LUMEN.git
+cd OPUS-LUMEN
 python -m http.server 8000 --directory dist
 ```
 
