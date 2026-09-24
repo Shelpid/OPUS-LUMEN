@@ -1,0 +1,20 @@
+{
+  "name": "opus-lumen",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OPUS LUMEN 5.5: an autonomous idea engine. Claude Opus 5.5 reasons, a walk-forward backtest judges, a hard gate decides what gets paper-traded.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "replay": "node tools/replay.mjs",
+    "data": "python tools/fetch_data.py"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0"
+  }
+}

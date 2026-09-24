@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPUS LUMEN 5.5 · autonomous idea engine</title>
+<meta name="description" content="Every idea gets put on trial. Claude Opus 5.5 reasons, a walk-forward backtest judges, a hard gate decides what gets paper-traded. Real Binance data.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+
+  <header class="panel hdr">
+    <canvas id="logo" class="logo" aria-hidden="true"></canvas>
+    <div class="brand">
+      <h1>OPUS <span>LUMEN</span><i>5.5</i></h1>
+      <div class="sub">AUTONOMOUS IDEA ENGINE · THINKS · TESTS · SHIPS</div>
+    </div>
+    <div class="kpis">
+      <div><label>RESEARCHED</label><b id="kIdeas">0</b></div>
+      <div><label>SHIPPED</label><b id="kShip" class="g">0</b></div>
+      <div><label>KILLED</label><b id="kKill">0</b></div>
+      <div><label>HIT RATE</label><b id="kHit" class="g">—</b></div>
+    </div>
+    <div class="state">
+      <b id="clock">—</b>
+      <span class="pill"><i></i><em id="mode">LOCAL</em></span>
+    </div>
+  </header>
+
+  <nav class="panel bar" aria-label="Controls">
+    <button id="bPlay" class="btn pri">❚❚ PAUSE</button>
+    <button id="bStep" class="btn" title="Jump to the next research cycle (→)">NEXT IDEA ›</button>
+    <div class="seg" role="group" aria-label="Replay speed">
+      <button class="btn" data-speed="1">1×</button><button class="btn" data-speed="2">2×</button><button class="btn" data-speed="4">4×</button><button class="btn" data-speed="8">8×</button>
+    </div>
+    <div class="seg" role="group" aria-label="Reasoner">
+      <button class="btn" data-brain="local" title="Rule-based reasoner, runs anywhere">LOCAL</button><button class="btn" data-brain="opus" id="bOpus" title="Claude Opus 5.5 via server.mjs">OPUS 5.5</button>
+    </div>
+    <button id="bRestart" class="btn">RESTART</button>
+    <span class="meta" id="meta"></span>
+  </nav>
+
+  <section class="row ra">
+    <div class="panel stream">
+      <div class="ph"><h2>THOUGHT STREAM</h2><span class="chip" id="ideaTag">WAITING</span></div>
+      <div class="phs" id="streamSub">EVERY IDEA IS ARGUED WITH BEFORE IT IS TESTED</div>
+      <div class="lines" id="lines" aria-live="off"></div>
+      <div class="pf"><span id="brainInfo"></span><span id="memInfo"></span></div>
+    </div>
+    <div class="panel conv">
+      <div class="ph"><h2>CONVICTION</h2><span class="r" id="convId"></span></div>
+      <canvas id="gauge" class="gauge" role="img" aria-label="Conviction gauge"></canvas>
+      <div class="checks" id="checks"></div>
+      <div class="verdict" id="verdict">VERDICT PENDING</div>
+    </div>
+  </section>
+
+  <section class="panel board">
+    <div class="ph"><h2>IDEA PIPELINE</h2><span class="r">SPARK → RESEARCH → BACKTEST → PAPER → LIVE · MOST IDEAS DIE ON THE WAY</span></div>
+    <div class="cols" id="cols"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section class="row rc">
+    <div class="panel matrix">
+      <div class="ph"><h2>SIGNAL MATRIX</h2><span class="r">8 ASSETS × LAST 12 HOURS · STRONGEST TRIGGER</span></div>
+      <canvas id="heat" class="grow" role="img" aria-label="Trigger strength by asset and hour"></canvas>
+    </div>
+    <div class="panel hour">
+      <div class="ph"><h2 id="hTitleH">IDEA OF THE HOUR</h2><span class="status" id="hStatus"></span></div>
+      <div class="htitle"><b id="hTitle">—</b><span id="hSub"></span></div>
+      <canvas id="mini" class="grow" role="img" aria-label="Price with entry, target and invalidation"></canvas>
+      <div class="hkv">
+        <div><label>ENTRY</label><b id="hEntry">—</b></div>
+        <div><label>TARGET</label><b id="hTarget" class="g">—</b></div>
+        <div><label>INVALID</label><b id="hStop">—</b></div>
+        <div><label>R : R</label><b id="hRR">—</b></div>
+        <div><label>P&amp;L</label><b id="hPnl">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row rd">
+    <div class="panel eq">
+      <div class="ph"><h2>PAPER BOOK vs HODL</h2><span class="r" id="eqSub"></span></div>
+      <canvas id="eq" class="grow" role="img" aria-label="Paper book equity against buy and hold"></canvas>
+      <div class="ekv">
+        <div><label>ENGINE</label><b id="eRet">+0.0%</b></div>
+        <div><label>HODL BASKET</label><b id="eHodl">+0.0%</b></div>
+        <div><label>MAX DRAWDOWN</label><b id="eDD">0.0%</b></div>
+        <div><label>CLOSED TRADES</label><b id="eTrades">0</b></div>
+        <div><label>OPEN</label><b id="eOpen">0</b></div>
+      </div>
+    </div>
+    <div class="panel lb">
+      <div class="ph"><h2>SHIPPED &amp; PAPER RESULTS</h2><span class="r">NEWEST FIRST</span></div>
+      <div class="lrows" id="lrows"></div>
+    </div>
+  </section>
+
+  <section class="panel mem">
+    <div class="ph"><h2>MEMORY</h2><span class="r">LESSONS ARE TAGGED WITH THE REGIME THEY DIED IN · SAME REGIME = SKIP, NEW REGIME = RETRY</span></div>
+    <div class="mrows" id="mrows"></div>
+  </section>
+
+  <div class="ticker"><div class="tk" id="tick"></div></div>
+
+  <footer class="foot">
+    Paper trading on historical Binance data replayed hour by hour. No exchange connection, no orders, no custody. Not financial advice.
+    Independent project built on Claude Opus 5.5. Not affiliated with Anthropic.
+  </footer>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
